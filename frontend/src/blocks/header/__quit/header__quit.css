@@ -1,0 +1,16 @@
+.header__quit{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #A9A9A9;
+    padding: 0;
+    border: 0;
+    background-color: black;
+    transition: opacity .3s;
+    cursor: pointer;
+    margin-left: 24px;
+}
+
+.profile__edit-button:hover {
+    opacity: .6;
+}

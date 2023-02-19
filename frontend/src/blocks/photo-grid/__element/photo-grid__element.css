@@ -1,0 +1,6 @@
+.photo-grid__element{
+    width: 100%;
+    max-width: 282px;
+    position: relative;
+    justify-items: center;
+}

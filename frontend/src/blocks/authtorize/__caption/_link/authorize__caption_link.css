@@ -1,0 +1,10 @@
+.authorize__caption_link {
+    text-decoration: none;
+    color: #fff;
+    transition: opacity .5s;
+    cursor: pointer;
+}
+
+.authorize__caption_link:hover{
+    opacity: .6;
+}

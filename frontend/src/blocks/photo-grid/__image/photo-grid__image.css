@@ -1,0 +1,6 @@
+.photo-grid__image{
+    width: 100%;
+    vertical-align: middle;
+    border-radius: 10px 10px 0 0;
+    height: 282px;
+}

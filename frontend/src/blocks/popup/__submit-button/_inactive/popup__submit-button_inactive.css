@@ -1,0 +1,7 @@
+.popup__submit-button_inactive{
+    opacity: 0.2;
+    background-color: #FFF;
+    color: #000;
+    border-radius: 2px;
+    cursor: unset;
+}

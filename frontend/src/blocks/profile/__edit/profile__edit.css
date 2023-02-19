@@ -1,0 +1,28 @@
+.profile__edit{
+    background-image: url(../../../images/EditButton.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+    opacity: 1;
+    outline: none;
+}
+
+.profile__edit:hover{
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+}
+
+@media (max-width: 524px){
+    .profile__edit{
+        width: 18px;
+        height: 18px;
+    }
+}
