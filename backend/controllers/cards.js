@@ -5,15 +5,16 @@ const FORBIDDEN_ERROR = require('../errors/forbidden-error');
 
 const findAllCards = (req, res, next) => {
   Card.find({})
+    .populate(['owner', 'likes'])
     .then((cards) => res.send(cards))
     .catch(next);
 };
 
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
-  const owner = req.user._id;
-  Card.create({ name, link, owner })
-    .then((card) => res.send(card))
+  const userId = req.user._id;
+  Card.create({ name, link, owner: userId })
+    .then((card) => res.status(201).send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(
@@ -26,7 +27,7 @@ const createCard = (req, res, next) => {
 };
 
 const deleteCard = (req, res, next) => {
-  Card.findByIdAndRemove(req.params.cardId)
+  Card.findById(req.params.cardId)
     .then((card) => {
       if (!card) {
         throw new NOT_FOUND_ERROR('Карточка с указанным id не найдена');
@@ -34,9 +35,9 @@ const deleteCard = (req, res, next) => {
       if (JSON.stringify(card.owner) !== JSON.stringify(req.user._id)) {
         throw new FORBIDDEN_ERROR('Необходимы права для удаления карточки');
       }
-      card.remove();
-      res.status(200).send(card);
+      return Card.remove(card);
     })
+    then(() => res.status(200).send(card))
     .catch((err) => {
       if (err.name === 'CastError') {
         next(
@@ -54,6 +55,7 @@ const likeCard = (req, res, next) => {
     { $addToSet: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         throw new NOT_FOUND_ERROR('Передан несуществующий id карточки');
@@ -77,6 +79,7 @@ const dislikeCard = (req, res, next) => {
     { $pull: { likes: req.user._id } },
     { new: true },
   )
+    .populate(['owner', 'likes'])
     .then((card) => {
       if (!card) {
         throw new NOT_FOUND_ERROR('Передан несуществующий id карточки');

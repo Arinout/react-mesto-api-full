@@ -172,7 +172,6 @@ function App() {
   } 
 
   function handleSignOut() {
-    localStorage.removeItem("jwt");
     setisLogIn(false);
     history.push('/sign-in');
   }

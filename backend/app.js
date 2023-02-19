@@ -38,11 +38,11 @@ app.use(auth);
 app.use('/users', users);
 app.use('/cards', cards);
 
-app.use(errorLogger);
-
 app.use((req, res, next) => {
   next(new NOT_FOUND_ERROR('Ресурс не найден'));
 });
+
+app.use(errorLogger);
 
 app.use(errors());
 
@@ -55,6 +55,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`App listening on port ${PORT}`);
 });
