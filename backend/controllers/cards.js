@@ -12,8 +12,8 @@ const findAllCards = (req, res, next) => {
 
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
-  const userId = req.user._id;
-  Card.create({ name, link, owner: userId })
+  const owner = req.user._id;
+  Card.create({ name, link, owner })
     .then((card) => res.status(201).send(card))
     .catch((err) => {
       if (err.name === 'ValidationError') {
@@ -37,7 +37,7 @@ const deleteCard = (req, res, next) => {
       }
       return Card.remove(card);
     })
-    then(() => res.status(200).send(card))
+    .then(() => res.status(200).send({ message: 'успешно'}))
     .catch((err) => {
       if (err.name === 'CastError') {
         next(

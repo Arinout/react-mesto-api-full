@@ -14,7 +14,7 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
+        NODE_ENV === 'production' ? JWT_SECRET : 'c40420a72ad8a8d6cb340e29fcb0b7cd',
         { expiresIn: '7d' },
       );
       res
@@ -23,7 +23,7 @@ const login = (req, res, next) => {
           httpOnly: true,
           sameSite: 'none',
         })
-        .send({ jwt: token });
+        .send({ message: 'Успешный вход в систему' });
     })
     .catch(next);
 };
