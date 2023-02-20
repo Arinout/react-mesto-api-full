@@ -38,6 +38,7 @@ export function authorize(data) {
     .then(response)
 };
 
+
 export function getContent() {
   return fetch(`${BASE_URL}/users/me`, {
     method: 'GET',

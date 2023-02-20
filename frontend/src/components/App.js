@@ -143,12 +143,10 @@ function App() {
 
   function handleLogIn(data) {
     auth.authorize(data)
-      .then((res) => {
-        if (res) {
+      .then(() => {
           setisLogIn(true);
           setEmail(data.email);
           history.push('/');
-        }
       })
       .catch((error) => {
         console.log(error);

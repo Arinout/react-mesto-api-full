@@ -37,7 +37,7 @@ const deleteCard = (req, res, next) => {
       }
       return Card.remove(card);
     })
-    .then(() => res.status(200).send({ message: 'успешно'}))
+    .then(() => res.status(200).send({ message: 'успешно' }))
     .catch((err) => {
       if (err.name === 'CastError') {
         next(
