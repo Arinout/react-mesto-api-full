@@ -23,7 +23,7 @@ const login = (req, res, next) => {
           httpOnly: true,
           sameSite: 'none',
         })
-        .send({ message: 'Успешный вход в систему' });
+        .send({ jwt: token });
     })
     .catch(next);
 };
